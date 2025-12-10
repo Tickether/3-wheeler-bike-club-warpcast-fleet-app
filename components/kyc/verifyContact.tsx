@@ -24,6 +24,7 @@ import { getProfileByPhoneAction } from "@/app/actions/kyc/getProfileByPhoneActi
 import { verifyPhoneCode } from "@/app/actions/phone/verifyPhoneCode"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Label } from "@/components/ui/label"
+import { sendWelcomeMail } from "@/app/actions/mail/sendWelcomeMail"
 
   
 
@@ -241,8 +242,10 @@ export function VerifyContact({ address, profile, getProfileSync }: VerifyEmailP
     try {
       console.log(values);
       if (values.terms) {
-        //post profile preupload
+        //send welcome email
+        await sendWelcomeMail(email!.toLowerCase());
         
+        //post profile preupload
         const postProfile = await postProfileAction(
           address!,
           email!.toLowerCase(),

@@ -3,7 +3,7 @@
 
 import nodemailer from "nodemailer"
 
-export const sendWelcomeEmail = async (email: string) => {
+export const sendWelcomeMail = async (email: string) => {
 
     try {
         const transporter = nodemailer.createTransport({
